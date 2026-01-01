@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fun.cyhgraph.mapper.TableInfoMapper">
+
+    <resultMap id="BaseResultMap" type="fun.cyhgraph.entity.TableInfo">
+        <id column="id" property="id"/>
+        <result column="table_number" property="tableNumber"/>
+        <result column="table_name" property="tableName"/>
+        <result column="capacity" property="capacity"/>
+        <result column="status" property="status"/>
+        <result column="sort" property="sort"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <select id="selectByCondition" resultMap="BaseResultMap">
+        SELECT * FROM table_info
+        <where>
+            <if test="tableNumber != null and tableNumber != ''">
+                AND table_number LIKE CONCAT('%', #{tableNumber}, '%')
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+        </where>
+        ORDER BY sort ASC
+    </select>
+
+</mapper>
