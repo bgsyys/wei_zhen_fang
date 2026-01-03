@@ -19,4 +19,8 @@ public class OrderSubmitDTO implements Serializable {
     private Integer tablewareStatus; // 餐具数量状态  1按餐量提供  0选择具体数量
     private Integer packAmount; // 打包费
     private BigDecimal amount; // 总金额
+    // 新增字段：就餐方式和餐桌信息
+    private Integer diningType; // 就餐方式：1-外卖，2-堂食
+    private Long tableId; // 餐桌ID（当dining_type=2时使用）
+    private String tableNumber; // 餐桌编号
 }

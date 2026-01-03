@@ -1,7 +1,6 @@
 package fun.cyhgraph.service;
 
 import fun.cyhgraph.dto.TableInfoDTO;
-import fun.cyhgraph.entity.TableInfo;
 import fun.cyhgraph.vo.TableInfoVO;
 
 import java.util.List;

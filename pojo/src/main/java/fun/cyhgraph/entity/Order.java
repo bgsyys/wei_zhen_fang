@@ -61,4 +61,12 @@ public class Order implements Serializable {
     private int packAmount; // 打包费
     private int tablewareNumber; // 餐具数量
     private Integer tablewareStatus; // 餐具数量状态  1按餐量提供  0选择具体数量
+    // 新增字段：就餐方式和餐桌信息
+    private Integer diningType; // 就餐方式：1-外送，2-店内就餐
+    private Long tableId; // 餐桌ID（当dining_type=2时使用）
+    private String tableNumber; // 餐桌编号
+
+    // 就餐方式常量
+    public static final Integer DELIVERY = 1; // 外卖
+    public static final Integer DINE_IN = 2;  // 堂食
 }

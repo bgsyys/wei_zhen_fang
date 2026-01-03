@@ -5,6 +5,7 @@ import fun.cyhgraph.dto.GoodsSalesDTO;
 import fun.cyhgraph.dto.OrderPageDTO;
 import fun.cyhgraph.entity.Order;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -54,4 +55,12 @@ public interface OrderMapper {
     Integer countByMap(Map map);
 
     List<GoodsSalesDTO> getSalesTop10(LocalDateTime beginTime, LocalDateTime endTime);
+
+    // 根据餐桌ID查询是否有进行中的订单
+    @Select("SELECT COUNT(*) FROM orders WHERE table_id = #{tableId} AND status IN (1,2,3,4)")
+    Integer countActiveOrdersByTableId(Long tableId);
+
+    // 更新餐桌状态
+    @Update("UPDATE table_info SET status = #{status}, update_time = NOW() WHERE id = #{tableId}")
+    void updateTableStatus(@Param("tableId") Long tableId, @Param("status") Integer status);
 }
